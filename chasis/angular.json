@@ -3,21 +3,17 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "chasis": {
+    "container": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/chasis",
+            "outputPath": "dist/container",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +24,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/systemjs/dist/system.min.js",
+              "node_modules/systemjs/dist/extras/amd.min.js",
+              "node_modules/systemjs/dist/extras/named-exports.min.js",
+              "node_modules/systemjs/dist/extras/named-register.min.js",
+              "node_modules/import-map-overrides/dist/import-map-overrides.js"
+            ],
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -43,6 +48,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -63,20 +69,20 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "chasis:build"
+            "browserTarget": "container:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "chasis:build:production"
+              "browserTarget": "container:build:production"
             }
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-builders/custom-webpack:extract-i18n",
           "options": {
-            "browserTarget": "chasis:build"
+            "browserTarget": "container:build"
           }
         },
         "test": {
@@ -91,7 +97,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -113,16 +119,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "chasis:serve"
+            "devServerTarget": "container:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "chasis:serve:production"
+              "devServerTarget": "container:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "chasis"
+  "defaultProject": "container",
+  "cli": {
+    "analytics": false
+  }
 }

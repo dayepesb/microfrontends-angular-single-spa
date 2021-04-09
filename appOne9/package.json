@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng s --project appOne9 --disable-host-check --port 4203 --deploy-url http://localhost:4203/ --live-reload false",
+    "build": "ng build --deploy-url http://localhost:4203/ --port 4203",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:single-spa:appOne9": "ng build appOne9 --prod --deploy-url http://localhost:4200/",
-    "serve:single-spa:appOne9": "ng s --project appOne9 --disable-host-check --port 4200 --deploy-url http://localhost:4200/ --live-reload false"
+    "build:single-spa:appOne9": "ng build appOne9 --prod --deploy-url http://localhost:4201/",
+    "serve:single-spa:appOne9": "ng s --project appOne9 --disable-host-check --port 4201 --deploy-url http://localhost:4201/ --live-reload false"
   },
   "private": true,
   "dependencies": {
@@ -18,9 +18,15 @@
     "@angular/compiler": "~11.2.7",
     "@angular/core": "~11.2.7",
     "@angular/forms": "~11.2.7",
+    "@angular/localize": "~11.2.7",
     "@angular/platform-browser": "~11.2.7",
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/router": "~11.2.7",
+    "@ng-bootstrap/ng-bootstrap": "^9.1.0",
+    "@ngrx/router-store": "^11.1.0",
+    "@ngrx/store": "^11.1.0",
+    "@ngrx/store-devtools": "^11.1.0",
+    "bootstrap": "^4.5.0",
     "rxjs": "~6.6.0",
     "single-spa": ">=4.0.0",
     "single-spa-angular": "^4.9.2",

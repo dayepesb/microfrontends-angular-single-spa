@@ -1,0 +1,11 @@
+<section class="conatner-form">
+    <label for="form1" class=" mt-3">Name</label>
+    <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="data.name">
+
+    <label for="form1" class=" mt-3">Description</label>
+    <input mdbInput type="text" id="form2" class="form-control" [(ngModel)]="data.description">
+
+    <label class="btn-primary mt-3" ngbButtonLabel (click)="sendData()">
+        Send and Go to Page 2
+    </label>
+</section>

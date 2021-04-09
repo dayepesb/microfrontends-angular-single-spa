@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "header": "http://localhost:4201/main.js",
+    "footer": "http://localhost:4202/main.js",
+    "child1": "http://localhost:4203/main.js",
+    "child2": "http://localhost:4204/main.js"
+  }
+}
