@@ -1,7 +1,7 @@
 # microfrontends-angular-single-spa
 The development of a single application with microfrontends concepts implementing the single-spa and redux library for communication between microfrontends
 
-# Instalation
+# Installation
 
 To run all the applications you must install the dependencies and run project by project for this we must execute the following commands:
 
