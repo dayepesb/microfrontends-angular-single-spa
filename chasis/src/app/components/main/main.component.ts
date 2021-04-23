@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { registerApplication } from 'single-spa';
+import EventBus from 'eventing-bus';
+import { EventBusService } from '../../lib/event.service';
 
 @Component({
   selector: 'app-main',
@@ -8,17 +10,23 @@ import { registerApplication } from 'single-spa';
 })
 export class MainComponent implements OnInit {
 
-  constructor() {
+  constructor(private eventBus: EventBusService) {
     registerApplication({
       name: 'header',
       app: () => System.import('header'),
-      activeWhen: '/'
+      activeWhen: '/',
+      customProps: {
+        EventBus: this.eventBus
+      }
     });
 
     registerApplication({
       name: 'footer',
       app: () => System.import('footer'),
-      activeWhen: '/'
+      activeWhen: '/',
+      customProps: {
+        EventBus: this.eventBus
+      }
     });
   }
 
